@@ -2,8 +2,8 @@ const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-var serveStatic = require('serve-static')
 const galleryService = require('./service');
+
 app.use(cors({ origin: true }));
 
 app.get('/api/get-gallery-info', (req, res) => {
@@ -15,7 +15,6 @@ app.get('/api/filter-gallery', (req, res) => {
   galleryService.filterGallery(req, res);
 });
 
-app.use(serveStatic(path.join(__dirname, 'dist')))
 exports.app = functions.https.onRequest(app);
 
 

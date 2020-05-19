@@ -8,7 +8,7 @@ const path = require('path');
 app.use(cors({ origin: true }));
 
 
-var distDir = __dirname + "/dist/";
+var distDir = __dirname + "/dist";
 app.use(express.static(distDir));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve("dist", "index.html"));

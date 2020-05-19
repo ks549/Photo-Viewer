@@ -5,7 +5,9 @@ const app = express();
 const galleryService = require('./service');
 
 app.use(cors({ origin: true }));
-app.use(express.static("build"));
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+// app.use(express.static("build"));
 
 app.get('/api/get-gallery-info', (req, res) => {
   console.log(req.query);

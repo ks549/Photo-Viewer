@@ -5,6 +5,7 @@ const app = express();
 const galleryService = require('./service');
 
 app.use(cors({ origin: true }));
+app.use(express.static("build"));
 
 app.get('/api/get-gallery-info', (req, res) => {
   console.log(req.query);
@@ -14,7 +15,10 @@ app.get('/api/filter-gallery', (req, res) => {
   console.log(req.query);
   galleryService.filterGallery(req, res);
 });
-
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+});
+  
 exports.app = functions.https.onRequest(app);
 
 

@@ -3,11 +3,18 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const galleryService = require('./service');
+const path = require('path');
 
 app.use(cors({ origin: true }));
+if (process.env.NODE_ENV === 'production') {
+
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
-// app.use(express.static("build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname,  "dist", "index.html"));
+});
+
+}
 
 app.get('/api/get-gallery-info', (req, res) => {
   console.log(req.query);
@@ -17,10 +24,7 @@ app.get('/api/filter-gallery', (req, res) => {
   console.log(req.query);
   galleryService.filterGallery(req, res);
 });
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-});
-  
+
 exports.app = functions.https.onRequest(app);
 
 

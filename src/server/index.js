@@ -15,7 +15,7 @@ app.use(cors({ origin: true }));
 // });
 
 
-const root = require('path').join(__dirname, 'dist')
+const root = require('path').join(__dirname, '/dist')
 app.use(express.static(root));
 app.get("*", (req, res) => {
     res.sendFile('index.html', { root });

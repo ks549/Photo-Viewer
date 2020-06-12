@@ -17,6 +17,6 @@ app.get('/api/filter-gallery', (req, res) => {
 exports.app = functions.https.onRequest(app);
 
 if(process.env.NODE_ENV === 'production') {
-  
+  app.use(express.static('dist'))
 }
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));

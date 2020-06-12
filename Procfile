@@ -1,1 +1,1 @@
-web: webpack-dev-server --mode development --devtool inline-source-map --hot
+web: npm run build

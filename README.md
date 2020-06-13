@@ -1,6 +1,8 @@
 Photo Viewer
 
-## Instruction to run the code
+Link-> https://photo-gallery-kee.herokuapp.com/
+Deployed in heroku
+## Instruction to run the code in local
 ```
 step1: clone the repo
 step2: "npm install"
@@ -22,4 +24,6 @@ step3: "npm run dev"
 •	React hooks| ReactJS
 •	Reducer
 •	SCSS
+•	Heroku
+
 ```

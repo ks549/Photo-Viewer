@@ -4,6 +4,11 @@ const cors = require('cors');
 const app = express();
 const galleryService = require('./service');
 app.use(cors({ origin: true }));
+app.use(express.static('dist'));
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname+'/dist/index.html');
+});
 
 app.get('/api/get-gallery-info', (req, res) => {
   console.log(req.query);
@@ -17,6 +22,6 @@ app.get('/api/filter-gallery', (req, res) => {
 exports.app = functions.https.onRequest(app);
 
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('dist'))
+  app.use(express.static('dist'));
 }
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));

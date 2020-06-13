@@ -1,15 +1,17 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const app = express();
 const galleryService = require('./service');
+
 app.use(cors({ origin: true }));
-app.use(express.static('dist'));
+
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname+'/dist/index.html');
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
-
 app.get('/api/get-gallery-info', (req, res) => {
   console.log(req.query);
   galleryService.getGalleryInfo(req, res);
